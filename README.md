@@ -30,7 +30,7 @@ The default configuration provided in the `user/plugins/cdn.yaml` file contains 
 ```
 enabled: true                                           # set to false to disable this plugin completely
 inline_css_replace: true                                # Replace inline css url() references
-pullzone: yourdomain.grav.netdna-cdn.com                # pullzone domain
+pullzone: yourdomain.cdn.com                            # pullzone domain
 tags: 'a|link|img|script'                               # HTML tags to search
 extensions: 'jpe?g|png|gif|ttf|otf|svg|woff|xml|js|css' # File extensions to replace on
 ```
