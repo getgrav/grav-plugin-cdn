@@ -1,3 +1,9 @@
+# v1.0.2
+## 07/13/2015
+
+2. [](#bugfix)
+    * Fix for url() matching not always getting triggered
+
 # v1.0.1
 ## 04/27/2015
 
