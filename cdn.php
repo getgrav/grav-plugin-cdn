@@ -43,16 +43,18 @@ class CdnPlugin extends Plugin
 
         $pullzone = 'http://'.$config['pullzone'];
         $base = str_replace('/', '\/', $this->grav['base_url_relative']);
+        $extensions = $config['extensions'];
+        $tags = $config['tags'];
         $replace = '$1'.$pullzone.'$2"';
 
-        $regex = "/((?:<(?:".$config['tags'].")\b)[^>]*?(?:href|src)=\")(?:(?!\/{2}))(?:".$base.")(.*?\.(?:".$config['extensions'].")(?:(?!(?:\?|&)nocdn).*?))(?<!(\?|&)nocdn)\"/i";
+        $regex = "/((?:<(?:".$tags.")\b)[^>]*?(?:href|src)=\")(?:(?!\/{2}))(?:".$base.")(.*?\.(?:".$extensions.")(?:(?!(?:\?|&)nocdn).*?))(?<!(\?|&)nocdn)\"/i";
 
         $this->grav->output = preg_replace($regex, $replace, $this->grav->output);
 
         // replacements for inline CSS url() style references
         if ($config['inline_css_replace']) {
-            $replace = '$1'.$pullzone.'$2);"';
-            $regex = "/(url\()(?:".$base.")(.*?\.(?:".$config['extensions'].")(?:(?!(?:\?|&)nocdn).*?))(?<!(\?|&)nocdn)\);\"/i";
+            $replace = '$1'.$pullzone.'$2';
+            $regex = "/(url\()(?:".$base.")(.*?\.(?:".$extensions."\)))/i";
             $this->grav->output = preg_replace($regex, $replace, $this->grav->output);
         }
     }
