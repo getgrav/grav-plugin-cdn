@@ -1,3 +1,9 @@
+# v1.0.3
+## 07/19/2015
+
+`. [](#improved)
+    * Added configurable `tag_attributes` config option
+
 # v1.0.2
 ## 07/13/2015
 
