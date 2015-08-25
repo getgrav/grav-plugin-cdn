@@ -25,7 +25,7 @@ You should now have all the plugin files under
 
 # Usage
 
-The default configuration provided in the `user/plugins/cdn.yaml` file contains sensible defaults:
+The default configuration provided in the `user/config/plugins/cdn.yaml` file contains sensible defaults:
 
 ```
 enabled: true                                           # set to false to disable this plugin completely

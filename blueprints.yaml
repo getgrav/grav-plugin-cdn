@@ -1,5 +1,5 @@
 name: CDN
-version: 1.0.3
+version: 1.1.0
 description: "Provides CDN support for Grav by rewriting URLs to take advantange of CDN Pull Zones"
 icon: cloud-upload
 author:
@@ -15,6 +15,7 @@ license: MIT
 form:
   validation: strict
   fields:
+
     enabled:
       type: toggle
       label: Plugin Status
@@ -25,3 +26,43 @@ form:
         0: Disabled
       validate:
         type: bool
+
+    pullzone:
+      type: text
+      label: Login path
+      default: "yourdomain.cdn.com"
+      placeholder: "yourdomain.cdn.com"
+      help: Pullzone domain
+
+    tags:
+      type: text
+      label: Login path
+      default: a|link|img|script
+      placeholder: "a|link|img|script"
+      help: HTML tags to search
+
+    tag_attributes:
+      type: text
+      label: Login path
+      default: "href|src"
+      placeholder: "href|src"
+      help: HTML tag attributes to search
+
+    inline_css_replace:
+      type: toggle
+      label: Inline CSS Replace
+      highlight: 1
+      default: 1
+      options:
+        1: Enabled
+        0: Disabled
+      validate:
+        type: bool
+      help: Replace inline css attribute references
+
+    extensions:
+      type: text
+      label: Extensions
+      default: jpe?g|png|gif|ttf|otf|svg|woff|xml|js|css
+      placeholder: "jpe?g|png|gif|ttf|otf|svg|woff|xml|js|css"
+      help: File extensions to replace on
