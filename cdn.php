@@ -47,7 +47,7 @@ class CdnPlugin extends Plugin
         $tags = $config['tags'];
         $replace = '$1'.$pullzone.'$2"';
 
-        $skip_fail = "(?s)(?:<pre[^<]*>.*?<\/pre>|<code[^<]*>.*?<\/code>)(*SKIP)(*F)|";
+        $skip_fail = "(?:<pre[^<]*>.*?<\/pre>|<code[^<]*>.*?<\/code>)(*SKIP)(*F)|";
 
         $regex = "/".$skip_fail."((?:<(?:".$tags.")\b)[^>]*?(?:href|src)=\")(?:(?!\/{2}))(?:".$base.")(.*?\.(?:".$extensions.")(?:(?!(?:\?|&)nocdn).*?))(?<!(\?|&)nocdn)\"/i";
 
