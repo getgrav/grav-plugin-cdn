@@ -51,9 +51,6 @@ class CdnPlugin extends Plugin
 
         $regex = "/".$skip_fail."((?:<(?:".$tags.")\b)[^>]*?(?:href|src)=\")(?:(?!\/{2}))(?:".$base.")(.*?\.(?:".$extensions.")(?:(?!(?:\?|&)nocdn).*?))(?<!(\?|&)nocdn)\"/i";
 
-
-        dump($regex);
-        
         $this->grav->output = preg_replace($regex, $replace, $this->grav->output);
 
         // replacements for inline CSS url() style references
