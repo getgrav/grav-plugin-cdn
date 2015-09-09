@@ -47,7 +47,7 @@ class CdnPlugin extends Plugin
         $tags = $config['tags'];
         $replace = '$1'.$pullzone.'$2"';
 
-        $regex = "/((?:<(?:".$tags.")\b)[^>]*?(?:href|src)=\")(?:(?!\/{2}))(?:".$base.")(.*?\.(?:".$extensions.")(?:(?!(?:\?|&)nocdn).*?))(?<!(\?|&)nocdn)\"/i";
+        $regex = "/(?s)<pre[^<]*>.*?<\/pre>(*SKIP)(*F)|((?:<(?:".$tags.")\b)[^>]*?(?:href|src)=\")(?:(?!\/{2}))(?:".$base.")(.*?\.(?:".$extensions.")(?:(?!(?:\?|&)nocdn).*?))(?<!(\?|&)nocdn)\"/i";
 
         $this->grav->output = preg_replace($regex, $replace, $this->grav->output);
 
