@@ -48,14 +48,16 @@ class CdnPlugin extends Plugin
         $tags = $config['tags'];
         $replace = '$1'.$pullzone.'$2"';
 
-        $regex = "/((?:<(?:".$tags.")\b)[^>]*?(?:".$tag_attributes.")=\")(?:(?!\/{2}))(?:".$base.")(.*?\.(?:".$extensions.")(?:(?!(?:\?|&)nocdn).*?))(?<!(\?|&)nocdn)\"/i";
+        $skip_fail = "(?:<pre[^<]*>(?:\n|.)*<\/pre>|<code[^<]*>(?:\n|.)*<\/code>)(*SKIP)(*F)|";
+
+        $regex = "/".$skip_fail."((?:<(?:".$tags.")\b)[^>]*?(?:href|src)=\")(?:(?!\/{2}))(?:".$base.")(.*?\.(?:".$extensions.")(?:(?!(?:\?|&)nocdn).*?))(?<!(\?|&)nocdn)\"/i";
 
         $this->grav->output = preg_replace($regex, $replace, $this->grav->output);
 
         // replacements for inline CSS url() style references
         if ($config['inline_css_replace']) {
             $replace = '$1'.$pullzone.'$2';
-            $regex = "/(url\()(?:".$base.")(.*?\.(?:".$extensions."\)))/i";
+            $regex = "/".$skip_fail."(url\()(?:".$base.")(.*?\.(?:".$extensions."\)))/i";
             $this->grav->output = preg_replace($regex, $replace, $this->grav->output);
         }
     }
