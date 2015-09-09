@@ -54,7 +54,7 @@ class CdnPlugin extends Plugin
         // replacements for inline CSS url() style references
         if ($config['inline_css_replace']) {
             $replace = '$1'.$pullzone.'$2';
-            $regex = "/(url\()(?:".$base.")(.*?\.(?:".$extensions."\)))/i";
+            $regex = "/(?s)<pre[^<]*>.*?<\/pre>(*SKIP)(*F)|(url\()(?:".$base.")(.*?\.(?:".$extensions."\)))/i";
             $this->grav->output = preg_replace($regex, $replace, $this->grav->output);
         }
     }
