@@ -47,14 +47,19 @@ class CdnPlugin extends Plugin
         $tags = $config['tags'];
         $replace = '$1'.$pullzone.'$2"';
 
-        $regex = "/(?s)<pre[^<]*>.*?<\/pre>(*SKIP)(*F)|((?:<(?:".$tags.")\b)[^>]*?(?:href|src)=\")(?:(?!\/{2}))(?:".$base.")(.*?\.(?:".$extensions.")(?:(?!(?:\?|&)nocdn).*?))(?<!(\?|&)nocdn)\"/i";
+        $skip_fail = "(?s)(?:<pre[^<]*>.*?<\/pre>|<code[^<]*>.*?<\/code>)(*SKIP)(*F)|";
 
+        $regex = "/".$skip_fail."((?:<(?:".$tags.")\b)[^>]*?(?:href|src)=\")(?:(?!\/{2}))(?:".$base.")(.*?\.(?:".$extensions.")(?:(?!(?:\?|&)nocdn).*?))(?<!(\?|&)nocdn)\"/i";
+
+
+        dump($regex);
+        
         $this->grav->output = preg_replace($regex, $replace, $this->grav->output);
 
         // replacements for inline CSS url() style references
         if ($config['inline_css_replace']) {
             $replace = '$1'.$pullzone.'$2';
-            $regex = "/(?s)<pre[^<]*>.*?<\/pre>(*SKIP)(*F)|(url\()(?:".$base.")(.*?\.(?:".$extensions."\)))/i";
+            $regex = "/".$skip_fail."(url\()(?:".$base.")(.*?\.(?:".$extensions."\)))/i";
             $this->grav->output = preg_replace($regex, $replace, $this->grav->output);
         }
     }
