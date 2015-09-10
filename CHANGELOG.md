@@ -1,3 +1,9 @@
+# v1.2.0
+## 09/10/2015
+
+1. [](#improved)
+    * Improved logic to exclude CDN replacements from `pre` and `code` blocks
+
 # v1.1.0
 ## 08/25/2015
 
