@@ -37,9 +37,17 @@ class CdnPlugin extends Plugin
     public function onOutputGenerated()
     {
         $config = $this->grav['config']->get('plugins.cdn');
+        $format = $this->grav['uri']->extension() ?: 'html';
+
+        // only process for HTML pages
+        if (!in_array($format, (array) $config['valid_formats'])) {
+            return;
+        }
 
         $cache = $this->grav['cache'];
         $key   = '?' . $cache->getKey();
+
+
 
         $pullzone   = 'http://' . $config['pullzone'];
         $base       = str_replace('/', '\/', $this->grav['base_url_relative']);

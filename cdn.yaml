@@ -3,4 +3,6 @@ inline_css_replace: true                                # Replace inline css url
 pullzone: yourdomain.cdn.com                            # pullzone domain
 tags: 'a|link|img|script'                               # HTML tags to search
 extensions: 'jpe?g|png|gif|ttf|otf|svg|woff|xml|js|css' # File extensions to replace on
+valid_formats:                                          # Valid formats
+  - html
 
