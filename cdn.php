@@ -47,10 +47,8 @@ class CdnPlugin extends Plugin
         $tags       = $config['tags'];
         $replace    = '$1' . $pullzone . '$2"';
 
-        //$skip_fail = "(?:<pre[^<]*>(?:\n|.)*<\/pre>|<code[^<]*>(?:\n|.)*<\/code>)(*SKIP)(*F)|";
-
         // match all pre/code blocks
-        preg_match_all("/<(pre|code)((?:(?!<\/\\1).)*?)<\/\\1>/uis", $test, $blocks);
+        preg_match_all("/<(pre|code)((?:(?!<\/\\1).)*?)<\/\\1>/uis", $this->grav->output, $blocks);
 
         $regex = "/((?:<(?:" . $tags . ")\b)[^>]*?(?:href|src)=\")(?:(?!\/{2}))(?:" . $base . ")(.*?\.(?:" . $extensions
             . ")(?:(?!(?:\?|&)nocdn).*?))(?<!(\?|&)nocdn)\"/i";
@@ -66,9 +64,16 @@ class CdnPlugin extends Plugin
 
         // replacements for inline CSS url() style references
         if ($config['inline_css_replace']) {
-            $replace            = '$1' . $pullzone . '$2';
-            $regex              = "/" . $skip_fail . "(url\()(?:" . $base . ")(.*?\.(?:" . $extensions . "\)))/i";
-            $this->grav->output = preg_replace($regex, $replace, $this->grav->output);
+            $regex  = "/(url\()(?:" . $base . ")(.*?\.(?:" . $extensions . "\)))/i";
+
+            $this->grav->output = preg_replace_callback(
+                $regex,
+                function ($matches) use ($blocks, $replace) {
+                    $isBlock = $this->array_search_partial($blocks[0], $matches[0]);
+                    return $isBlock ? $matches[0] : $replace;
+                },
+                $this->grav->output
+            );
         }
     }
 
