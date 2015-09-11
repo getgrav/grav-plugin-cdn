@@ -1,3 +1,9 @@
+# v1.2.1
+## 09/10/2015
+
+1. [](#bugfix)
+    * Fixed an issue where CDN tried to process on non HTML pages
+
 # v1.2.0
 ## 09/10/2015
 
