@@ -1,3 +1,9 @@
+# v1.2.2
+## 23/10/2015
+
+1. [](#bugfix)
+    * Fixed Regex to better handle multiple inline matches
+
 # v1.2.1
 ## 09/10/2015
 
@@ -15,7 +21,7 @@
 
 1. [](#improved)
     * Added blueprints for Grav Admin plugin
-    
+
 # v1.0.3
 ## 07/19/2015
 
