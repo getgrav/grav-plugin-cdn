@@ -46,16 +46,17 @@ class CdnPlugin extends Plugin
         $cache = $this->grav['cache'];
         $key   = '?' . $cache->getKey();
 
-        $pullzone   = 'http://' . $config['pullzone'];
-        $base       = str_replace('/', '\/', $this->grav['base_url_relative']);
-        $extensions = $config['extensions'];
-        $tags       = $config['tags'];
+        $pullzone       = 'http://' . $config['pullzone'];
+        $base           = str_replace('/', '\/', $this->grav['base_url_relative']);
+        $extensions     = $config['extensions'];
+        $tag_attributes = $config['tag_attributes'];
+        $tags           = $config['tags'];
 
         // match all pre/code blocks
         preg_match_all("/<(pre|code)((?:(?!<\/\\1).)*?)<\/\\1>/uis", $this->grav->output, $blocks);
 
-        $regex = "/((?:<(?:" . $tags . ")\b)[^>]*?(?:href|src)=\")(?:(?!\/{2}))(?:" . $base . ")(.*?\.(?:" . $extensions
-            . ")(?:(?!(?:\?|&)nocdn).*?))(?<!(\?|&)nocdn)\"/i";
+        // for future: $regex = "/(<(?:a|img|link|script)[^>]+(?:href|src)=\")([^\"]+(?:(?!\/{2}))(?:)(\.(?:jpe?g|png|gif|ttf|otf|svg|woff|xml|js|css)(?:(?!(?:\?|&)nocdn).*?))(?<!(\?|&)nocdn))\"/i";
+        $regex = "/(<(?:" . $tags . ")[^>]+(?:" . $tag_attributes . ")=\")([^\"]+(?:(?!\/{2}))(?:" . $base . ")(\.(?:" . $extensions . ")(?:(?!(?:\?|&)nocdn).*?))(?<!(\?|&)nocdn))\"/i";
 
         $this->grav->output = preg_replace_callback(
             $regex,
