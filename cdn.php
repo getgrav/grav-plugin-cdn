@@ -69,13 +69,13 @@ class CdnPlugin extends Plugin
 
         // replacements for inline CSS url() style references
         if ($config['inline_css_replace']) {
-            $regex = "/(url\()(?:" . $base . ")(.*?\.(?:" . $extensions . "\)))/i";
+            $regex = "/(url\()(?:" . $base . ")(.*?\.(?:" . $extensions . "))(.*;)/i";
 
             $this->grav->output = preg_replace_callback(
                 $regex,
                 function ($matches) use ($blocks, $pullzone) {
                     $isBlock = $this->array_search_partial($blocks[0], $matches[0]);
-                    return $isBlock ? $matches[0] : $matches[1] . $pullzone . $matches[2] . '"';
+                    return $isBlock ? $matches[0] : $matches[1] . $pullzone . $matches[2] . $matches[3];
                 },
                 $this->grav->output
             );
