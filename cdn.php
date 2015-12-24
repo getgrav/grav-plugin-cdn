@@ -46,7 +46,7 @@ class CdnPlugin extends Plugin
         $cache = $this->grav['cache'];
         $key   = '?' . $cache->getKey();
 
-        $pullzone       = 'http://' . $config['pullzone'];
+        $pullzone       = '//' . $config['pullzone'];
         $base           = str_replace('/', '\/', $this->grav['base_url_relative']);
         $extensions     = $config['extensions'];
         $tag_attributes = $config['tag_attributes'];
