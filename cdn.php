@@ -33,7 +33,6 @@ class CdnPlugin extends Plugin
         ]);
     }
 
-
     public function onOutputGenerated()
     {
         $config = $this->grav['config']->get('plugins.cdn');
@@ -43,10 +42,16 @@ class CdnPlugin extends Plugin
             return;
         }
 
-        $cache = $this->grav['cache'];
-        $key   = '?' . $cache->getKey();
+        // set the protocol to HTTPS if you access that way
+        if (true or isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) == 'on') {
+            $protocol =  'https://';
+            $pullzone = isset($config['pullzone_ssl']) ? $config['pullzone_ssl'] : $config['pullzone'];
+        } else {
+            $protocol = 'http://';
+            $pullzone = $config['pullzone'];
+        }
 
-        $pullzone       = '//' . $config['pullzone'];
+        $pullzone       = $protocol . $pullzone;
         $base           = str_replace('/', '\/', $this->grav['base_url_relative']);
         $extensions     = $config['extensions'];
         $tag_attributes = $config['tag_attributes'];
