@@ -43,7 +43,7 @@ class CdnPlugin extends Plugin
         }
 
         // set the protocol to HTTPS if you access that way
-        if (true or isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) == 'on') {
+        if (isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) == 'on') {
             $protocol =  'https://';
             $pullzone = isset($config['pullzone_ssl']) ? $config['pullzone_ssl'] : $config['pullzone'];
         } else {
