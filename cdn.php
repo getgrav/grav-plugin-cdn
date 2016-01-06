@@ -33,7 +33,6 @@ class CdnPlugin extends Plugin
         ]);
     }
 
-
     public function onOutputGenerated()
     {
         $config = $this->grav['config']->get('plugins.cdn');
@@ -43,10 +42,16 @@ class CdnPlugin extends Plugin
             return;
         }
 
-        $cache = $this->grav['cache'];
-        $key   = '?' . $cache->getKey();
+        // set the protocol to HTTPS if you access that way
+        if (isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) == 'on') {
+            $protocol =  'https://';
+            $pullzone = isset($config['pullzone_ssl']) ? $config['pullzone_ssl'] : $config['pullzone'];
+        } else {
+            $protocol = 'http://';
+            $pullzone = $config['pullzone'];
+        }
 
-        $pullzone       = 'http://' . $config['pullzone'];
+        $pullzone       = $protocol . $pullzone;
         $base           = str_replace('/', '\/', $this->grav['base_url_relative']);
         $extensions     = $config['extensions'];
         $tag_attributes = $config['tag_attributes'];
@@ -69,13 +74,13 @@ class CdnPlugin extends Plugin
 
         // replacements for inline CSS url() style references
         if ($config['inline_css_replace']) {
-            $regex = "/(url\()(?:" . $base . ")(.*?\.(?:" . $extensions . "\)))/i";
+            $regex = "/(url\()(?:" . $base . ")(.*?\.(?:" . $extensions . "))(.*;)/i";
 
             $this->grav->output = preg_replace_callback(
                 $regex,
                 function ($matches) use ($blocks, $pullzone) {
                     $isBlock = $this->array_search_partial($blocks[0], $matches[0]);
-                    return $isBlock ? $matches[0] : $matches[1] . $pullzone . $matches[2] . '"';
+                    return $isBlock ? $matches[0] : $matches[1] . $pullzone . $matches[2] . $matches[3];
                 },
                 $this->grav->output
             );

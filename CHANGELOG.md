@@ -1,3 +1,13 @@
+# v1.3.0
+## 01/06/2016
+
+1. [](#new)
+    * Support SSL pullzone
+1. [](#improved)
+    * Protocol-less pull zone reference
+1. [](#bugfix)
+    * Fix for the inline CSS regex
+
 # v1.2.2
 ## 23/10/2015
 
