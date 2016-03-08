@@ -1,5 +1,5 @@
 name: CDN
-version: 1.3.0
+version: 1.3.1
 description: "Provides CDN support for Grav by rewriting URLs to take advantange of CDN Pull Zones"
 icon: cloud-upload
 author:
@@ -66,3 +66,10 @@ form:
       default: jpe?g|png|gif|ttf|otf|svg|woff|xml|js|css
       placeholder: "jpe?g|png|gif|ttf|otf|svg|woff|xml|js|css"
       help: File extensions to replace on
+
+    valid_formats:
+      type: text
+      label: Valid Formats
+      default: html
+      placeholder: "html"
+      help: Page type to search/replace within
