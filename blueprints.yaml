@@ -36,14 +36,14 @@ form:
 
     tags:
       type: text
-      label: Login path
+      label: Tags
       default: a|link|img|script
       placeholder: "a|link|img|script"
       help: HTML tags to search
 
     tag_attributes:
       type: text
-      label: Login path
+      label: Tag Attributes
       default: "href|src"
       placeholder: "href|src"
       help: HTML tag attributes to search
