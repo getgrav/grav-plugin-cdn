@@ -1,3 +1,9 @@
+# v1.3.1
+## 05/03/2016
+
+1. [](#bugfix)
+    * Fixed blueprints
+
 # v1.3.0
 ## 01/06/2016
 
@@ -9,7 +15,7 @@
     * Fix for the inline CSS regex
 
 # v1.2.2
-## 23/10/2015
+## 10/23/2015
 
 1. [](#bugfix)
     * Fixed Regex to better handle multiple inline matches
