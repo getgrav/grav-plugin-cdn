@@ -66,3 +66,19 @@ or
 ```
 {{ page.media['myimage.jpg'].nocdn.cropResize(500,200).grayscale }}
 ```
+
+### Important note about font files
+
+If you are hosting custom font files (eot, ttf, otf, or woff) you need to be aware that it requires setting the Access-Control-Allow-Origin header to the domain serving your Grav site or use wildcard-origin (*).
+
+```
+# Apache config
+<FilesMatch ".(eot|ttf|otf|woff)">
+	Header set Access-Control-Allow-Origin "*"
+</FilesMatch>
+
+# nginx config
+if ($filename ~* ^.*?\.(eot)|(ttf)|(woff)$){
+	add_header Access-Control-Allow-Origin *;
+}
+```
