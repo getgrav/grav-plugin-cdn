@@ -1,5 +1,5 @@
 name: CDN
-version: 1.3.1
+version: 1.4.0
 description: "Provides CDN support for Grav by rewriting URLs to take advantange of CDN Pull Zones"
 icon: cloud-upload
 author:
@@ -29,17 +29,17 @@ form:
 
     pullzone:
       type: text
-      label: Login path
+      label: CDN Domain
       default: "yourdomain.cdn.com"
       placeholder: "yourdomain.cdn.com"
-      help: Pullzone domain
+      help: The domain hosting your CDN distribution eg. cdn.getgrav.org
 
     tags:
       type: text
       label: Tags
       default: a|link|img|script
       placeholder: "a|link|img|script"
-      help: HTML tags to search
+      help: HTML tags to search and replace with CDN url
 
     tag_attributes:
       type: text
