@@ -1,3 +1,9 @@
+# v1.4.0
+## 02/01/2017
+
+1. [](#improved)
+    * Improved Regex to ignore remote protocl URLs and handle sub-directory based installations
+
 # v1.3.1
 ## 05/03/2016
 
