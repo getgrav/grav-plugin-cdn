@@ -60,8 +60,8 @@ class CdnPlugin extends Plugin
         // match all pre/code blocks
         preg_match_all("/<(pre|code)((?:(?!<\/\\1).)*?)<\/\\1>/uis", $this->grav->output, $blocks);
 
-        // for future: $regex = "/(<(?:a|img|link|script)[^>]+(?:href|src)=\")([^\"]+(?:(?!\/{2}))(?:)(\.(?:jpe?g|png|gif|ttf|otf|svg|woff|xml|js|css)(?:(?!(?:\?|&)nocdn).*?))(?<!(\?|&)nocdn))\"/i";
-        $regex = "/(<(?:" . $tags . ")[^>]+(?:" . $tag_attributes . ")=\")([^\"]+(?:(?!\/{2}))(?:" . $base . ")(\.(?:" . $extensions . ")(?:(?!(?:\?|&)nocdn).*?))(?<!(\?|&)nocdn))\"/i";
+        // https://regex101.com/r/pI3tF7/5 -> (<(?:a|img|link|script)[^>]+(?:href|src)=\"(?:(?!(?:[a-z-+]{1,}?:)?\/{2})))([^\"]+(?:)(\.(?:jpe?g|png|gif|ttf|otf|svg|woff|xml|js|css)(?:(?!(?:\?|&)nocdn).*?))(?<!(\?|&)nocdn))\"
+        $regex = "/(<(?:" . $tags . ")[^>]+(?:" . $tag_attributes . ")=\"(?:(?!(?:[a-z-+]{1,}?:)?\/{2})))([^\"]+(\.(?:" . $extensions . ")(?:(?!(?:\?|&)nocdn).*?))(?<!(\?|&)nocdn))\"/i";
 
         $this->grav->output = preg_replace_callback(
             $regex,
