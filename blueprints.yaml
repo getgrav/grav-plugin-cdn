@@ -27,6 +27,17 @@ form:
       validate:
         type: bool
 
+    forcehttps:
+      type: toggle
+      label: Force HTTPS
+      highlight: 1
+      default: 0
+      options:
+        1: Enabled
+        0: Disabled
+      validate:
+        type: bool
+
     pullzone:
       type: text
       label: CDN Domain
