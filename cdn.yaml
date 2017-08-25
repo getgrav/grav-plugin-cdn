@@ -1,4 +1,5 @@
 enabled: true                                           # set to false to disable this plugin completely
+forcehttps: false                                       # Force HTTPS regardless of SERVER_HTTPS
 inline_css_replace: true                                # Replace inline css url() references
 pullzone: yourdomain.cdn.com                            # pullzone domain
 tags: 'a|link|img|script'                               # HTML tags to search
