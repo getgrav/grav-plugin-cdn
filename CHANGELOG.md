@@ -1,3 +1,13 @@
+# v1.5.0
+## 10/09/2018
+
+1. [](#improved)
+    * Added ability to force HTTPS [#10](https://github.com/getgrav/grav-plugin-cdn/pull/10)
+    * Minor blueprint typo [#14](https://github.com/getgrav/grav-plugin-cdn/pull/14)
+    * Added `.ico` to default extensions [#15](https://github.com/getgrav/grav-plugin-cdn/pull/15)
+1. [](#bugfix)
+    * Fix regex correctly matches url() referenced assets [#11](https://github.com/getgrav/grav-plugin-cdn/pull/11)
+
 # v1.4.0
 ## 02/01/2017
 

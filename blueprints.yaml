@@ -1,6 +1,6 @@
 name: CDN
-version: 1.4.0
-description: "Provides CDN support for Grav by rewriting URLs to take advantange of CDN Pull Zones"
+version: 1.5.0
+description: "Provides CDN support for Grav by rewriting URLs to take advantage of CDN Pull Zones"
 icon: cloud-upload
 author:
   name: Team Grav
@@ -21,6 +21,17 @@ form:
       label: Plugin Status
       highlight: 1
       default: 1
+      options:
+        1: Enabled
+        0: Disabled
+      validate:
+        type: bool
+
+    forcehttps:
+      type: toggle
+      label: Force HTTPS
+      highlight: 1
+      default: 0
       options:
         1: Enabled
         0: Disabled
@@ -63,8 +74,8 @@ form:
     extensions:
       type: text
       label: Extensions
-      default: jpe?g|png|gif|ttf|otf|svg|woff|xml|js|css
-      placeholder: "jpe?g|png|gif|ttf|otf|svg|woff|xml|js|css"
+      default: jpe?g|png|gif|ico|ttf|otf|svg|woff|xml|js|css
+      placeholder: "jpe?g|png|gif|ico|ttf|otf|svg|woff|xml|js|css"
       help: File extensions to replace on
 
     valid_formats:
