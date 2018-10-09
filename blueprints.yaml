@@ -1,6 +1,6 @@
 name: CDN
 version: 1.4.0
-description: "Provides CDN support for Grav by rewriting URLs to take advantange of CDN Pull Zones"
+description: "Provides CDN support for Grav by rewriting URLs to take advantage of CDN Pull Zones"
 icon: cloud-upload
 author:
   name: Team Grav
