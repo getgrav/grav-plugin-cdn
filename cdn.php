@@ -80,7 +80,7 @@ class CdnPlugin extends Plugin
             // https://regex101.com/r/8zAnec/2 -> (url\([\'\"])(?:)(.*?\.(?:jpe?g|png|gif|ttf|otf|svg|woff|xml|js|css))(.*?\);)/i
             // or with $base
             // https://regex101.com/r/g0R6sj/2 -> (url\([\'\"])(?:http:\/\/github\.com)(.*?\.(?:jpe?g|png|gif|ttf|otf|svg|woff|xml|js|css))(.*?\);)/i
-            $regex = "/(url\([\'\"])(?:" . $base . ")(.*?\.(?:" . $extensions . "))(.*?\);)/i";
+            $regex = "/(url\([\'\"]?)(?:" . $base . ")(.*?\.(?:" . $extensions . "))(.*?\);)/i";
 
             $this->grav->output = preg_replace_callback(
                 $regex,
