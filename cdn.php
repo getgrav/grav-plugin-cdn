@@ -36,6 +36,14 @@ class CdnPlugin extends Plugin
     public function onOutputGenerated()
     {
         $config = $this->grav['config']->get('plugins.cdn');
+
+        // No pullzone configured — skip rewriting entirely. Lets the plugin
+        // ship enabled by default without breaking assets on a fresh install
+        // where the site owner hasn't set a CDN domain yet.
+        if (empty($config['pullzone'])) {
+            return;
+        }
+
         $format = $this->grav['uri']->extension() ?: 'html';
         // only process for HTML pages
         if (!in_array($format, (array) $config['valid_formats'])) {
@@ -43,7 +51,7 @@ class CdnPlugin extends Plugin
         }
 
         // set the protocol to HTTPS if you access that way
-        if ( (isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) == 'on') ||
+        if ( (isset($_SERVER['HTTPS']) && strtolower((string) $_SERVER['HTTPS']) == 'on') ||
            ( isset($config['forcehttps']) && $config['forcehttps'] == true))
            {
             $protocol =  'https://';
@@ -80,7 +88,7 @@ class CdnPlugin extends Plugin
             // https://regex101.com/r/8zAnec/2 -> (url\([\'\"])(?:)(.*?\.(?:jpe?g|png|gif|ttf|otf|svg|woff|xml|js|css))(.*?\);)/i
             // or with $base
             // https://regex101.com/r/g0R6sj/2 -> (url\([\'\"])(?:http:\/\/github\.com)(.*?\.(?:jpe?g|png|gif|ttf|otf|svg|woff|xml|js|css))(.*?\);)/i
-            $regex = "/(url\([\'\"])(?:" . $base . ")(.*?\.(?:" . $extensions . "))(.*?\);)/i";
+            $regex = "/(url\([\'\"]?)(?:" . $base . ")(.*?\.(?:" . $extensions . "))(.*?\);)/i";
 
             $this->grav->output = preg_replace_callback(
                 $regex,
@@ -96,7 +104,7 @@ class CdnPlugin extends Plugin
     private function array_search_partial($arr, $keyword)
     {
         foreach ($arr as $index => $string) {
-            if (strpos($string, $keyword) !== false) {
+            if (strpos((string) $string, (string) $keyword) !== false) {
                 return $index;
             }
         }

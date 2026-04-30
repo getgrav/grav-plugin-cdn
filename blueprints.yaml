@@ -1,5 +1,5 @@
 name: CDN
-version: 1.5.0
+version: 1.5.1
 description: "Provides CDN support for Grav by rewriting URLs to take advantage of CDN Pull Zones"
 icon: cloud-upload
 author:
@@ -11,6 +11,9 @@ demo: http://getgrav.org
 keywords: "cdn, plugin, performance, speed"
 bugs: https://github.com/getgrav/grav-plugin-cdn/issues
 license: MIT
+
+compatibility:
+  grav: ['1.7', '2.0']
 
 form:
   validation: strict
@@ -41,9 +44,8 @@ form:
     pullzone:
       type: text
       label: CDN Domain
-      default: "yourdomain.cdn.com"
       placeholder: "yourdomain.cdn.com"
-      help: The domain hosting your CDN distribution eg. cdn.getgrav.org
+      help: The domain hosting your CDN distribution eg. cdn.getgrav.org. CDN rewriting is skipped while this is empty, so the plugin can stay enabled out of the box without breaking your assets.
 
     tags:
       type: text
