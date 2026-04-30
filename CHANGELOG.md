@@ -1,3 +1,10 @@
+# v1.5.1
+## 04/30/2026
+
+1. [](#bugfix)
+    * Fixed PHP 8.1+ deprecation notice — explicit string casts where `null` was being passed to string-typed function arguments.
+    * No more "broken site after install" — removed the `yourdomain.cdn.com` placeholder default for the `pullzone` field. The plugin now skips CDN rewriting entirely when `pullzone` is empty, so it can ship enabled by default without breaking assets on a fresh install. Set your real CDN domain in plugin settings to activate rewriting.
+
 # v1.5.0
 ## 10/09/2018
 
