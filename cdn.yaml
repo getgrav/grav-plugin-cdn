@@ -4,6 +4,6 @@ inline_css_replace: true                                    # Replace inline css
 pullzone:                                                   # pullzone domain — leave blank to disable CDN rewriting
 tags: 'a|link|img|script'                                   # HTML tags to search
 tag_attributes: 'href|src'                                  # HTML tag attributes to search
-extensions: 'jpe?g|png|gif|ico|ttf|otf|svg|woff|xml|js|css' # File extensions to replace on
+extensions: 'jpe?g|png|gif|webp|avif|ico|ttf|otf|svg|woff|xml|js|css' # File extensions to replace on
 valid_formats:                                              # Valid formats
   - html
