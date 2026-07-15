@@ -1,3 +1,11 @@
+# v1.5.2
+## 07/15/2026
+
+1. [](#bugfix)
+    * Responsive images now load from the CDN at every size, not just the first one in the list.
+    * Images shown inside a code example on a page are no longer rewritten to the CDN.
+    * WebP and AVIF images are now sent to the CDN by default.
+
 # v1.5.1
 ## 04/30/2026
 
